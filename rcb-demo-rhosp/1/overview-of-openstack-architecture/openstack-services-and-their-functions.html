@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>OpenStack services and their functions :: Basics of RHOSP</title>
+    <link rel="prev" href="overview-of-openstack-architecture.html">
+    <link rel="next" href="relationship-between-openstack-projects-eg-nova-glance-keystone.html">
+    <meta name="generator" content="Antora 3.1.3">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.redhat.com" target="_blank"><img src="../../../_/img/redhat-logo.png" height="40px" alt="Red Hat"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="../../..">Basics of RHOSP</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://github.com/RedHatQuickCourses/course-starter-template/issues" target="_blank">Report Issues</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="rcb-demo-rhosp" data-version="1">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Basics of RHOSP</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Home</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../LABENV/index.html">Lab Environment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="overview-of-openstack-architecture.html">Overview of OpenStack architecture</a>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="openstack-services-and-their-functions.html">OpenStack services and their functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="relationship-between-openstack-projects-eg-nova-glance-keystone.html">Relationship between OpenStack projects (e.g., Nova, Glance, Keystone)</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../virtual-machine-deployment/virtual-machine-deployment.html">Virtual machine deployment</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../virtual-machine-deployment/nova-and-glance-interaction-for-vm-creation.html">Nova and Glance interaction for VM creation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../virtual-machine-deployment/flavors-images-and-instance-management.html">Flavors, images, and instance management</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../network-configuration-in-rhosp/network-configuration-in-rhosp.html">Network configuration in RHOSP</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../network-configuration-in-rhosp/neutron-networking-overview.html">Neutron networking overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../network-configuration-in-rhosp/setting-up-networks-subnets-and-routers.html">Setting up networks, subnets, and routers</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../hands-on-labs/hands-on-labs.html">Hands-on Labs</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../hands-on-labs/user-management-exercises-create-users-roles-and-projects.html">User management exercises: create users, roles, and projects</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../hands-on-labs/deploying-virtual-machines-using-nova-and-glance.html">Deploying virtual machines using Nova and Glance</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../hands-on-labs/configuring-networks-and-setting-up-load-balancing-with-haproxy.html">Configuring networks and setting up load balancing with HAProxy</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../appendix/appendix.html">Appendix</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Basics of RHOSP</span>
+    <span class="version">1</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">Basics of RHOSP</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">1</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Basics of RHOSP</a></li>
+    <li><a href="overview-of-openstack-architecture.html">Overview of OpenStack architecture</a></li>
+    <li><a href="openstack-services-and-their-functions.html">OpenStack services and their functions</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">OpenStack services and their functions</h1>
+<h1 id="_basics_of_rhosp" class="sect0"><a class="anchor" href="#_basics_of_rhosp"></a>Basics of RHOSP</h1>
+<div class="sect1">
+<h2 id="_overview_of_openstack_architecture"><a class="anchor" href="#_overview_of_openstack_architecture"></a>Overview of OpenStack architecture</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>OpenStack, a widely-used open-source cloud computing platform, comprises several interconnected services that work together to deliver infrastructure as a service (IaaS). These services can be broadly categorized into core services and ancillary services. Each service plays a critical role in providing comprehensive cloud functionalities, such as compute, storage, networking, and image services.</p>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s an overview of the essential OpenStack services and their functions:</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_core_services"><a class="anchor" href="#_core_services"></a>Core Services</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_1_nova_compute"><a class="anchor" href="#_1_nova_compute"></a>1. Nova (Compute)</h3>
+<div class="paragraph">
+<p>Nova is responsible for managing and provisioning virtual machines (VMs) and bare metal servers within the cloud infrastructure. It enables users to create, update, and delete instances based on their requirements. Key aspects of Nova include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Instance Management</strong>: Nova handles instance lifecycle operations like launching, resizing, and terminating instances using flavors (predefined VM sizes).</p>
+</li>
+<li>
+<p><strong>API Access</strong>: Provides a RESTful API for users to interact with the service, enabling automation and integration with other OpenStack components or third-party tools.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2_glance_image"><a class="anchor" href="#_2_glance_image"></a>2. Glance (Image)</h3>
+<div class="paragraph">
+<p>Glance serves as the image service in OpenStack, managing disk images that are used to create and snapshot VMs. It handles various image formats and provides a centralized repository for storing VM images:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Image Storage</strong>: Stores VM disk images, which can be either raw or pre-formatted filesystems. Users upload images to Glance, making them available for consumption by Nova for instance creation.</p>
+</li>
+<li>
+<p><strong>Image Metadata</strong>: Allows users to provide metadata associated with images, such as image name, disk format, container format, and kernel/ramdisk options.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_keystone_identity"><a class="anchor" href="#_3_keystone_identity"></a>3. Keystone (Identity)</h3>
+<div class="paragraph">
+<p>Keystone is the authentication and authorization service in OpenStack, responsible for managing user accounts, roles, services, endpoints, and tokens:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Authentication</strong>: Verifies users' credentials against a backend database (e.g., LDAP, SQL) or uses token-based mechanisms like OAuth or SAML.</p>
+</li>
+<li>
+<p><strong>Authorization</strong>: Defines access policies by mapping users to roles and roles to permissions for various OpenStack services and API endpoints.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ancillary_services"><a class="anchor" href="#_ancillary_services"></a>Ancillary Services</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_1_cinder_block_storage"><a class="anchor" href="#_1_cinder_block_storage"></a>1. Cinder (Block Storage)</h3>
+<div class="paragraph">
+<p>Cinder provides persistent block storage to virtual machines through iSCSI and other protocols:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Volume Management</strong>: Allows the creation, deletion, attachment, and detachment of volumes to instances for additional data storage.</p>
+</li>
+<li>
+<p><strong>Backups</strong>: Supports volume snapshots and backups, enabling point-in-time recovery of data.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2_swift_object_storage"><a class="anchor" href="#_2_swift_object_storage"></a>2. Swift (Object Storage)</h3>
+<div class="paragraph">
+<p>Swift is OpenStack&#8217;s object storage service, offering highly durable and scalable storage for unstructured data:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Storage Pools</strong>: Uses clusters of commodity servers to store vast amounts of data as objects, ensuring redundancy through replication across different availability zones.</p>
+</li>
+<li>
+<p><strong>Access Control</strong>: Manages user accounts with access control lists (ACLs) for controlling who can read and write objects in Swift containers.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_neutron_networking"><a class="anchor" href="#_3_neutron_networking"></a>3. Neutron (Networking)</h3>
+<div class="paragraph">
+<p>Neutron is the networking service responsible for managing the network connectivity of VMs:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Network Creation</strong>: Enables the creation of virtual networks, subnets, routers, load balancers, and firewalls to support various networking models (e.g., flat, VLAN, GRE, VXLAN).</p>
+</li>
+<li>
+<p><strong>Connectivity</strong>: Facilitates communication between VMs, external networks, and the internet by configuring security groups, port forwarding rules, and other networking features.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_4_horizon_dashboard"><a class="anchor" href="#_4_horizon_dashboard"></a>4. Horizon (Dashboard)</h3>
+<div class="paragraph">
+<p>Horizon is OpenStack&#8217;s web-based user interface that provides a graphical way to interact with OpenStack services:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>User Interface</strong>: Offers an intuitive dashboard for managing resources, creating and configuring VMs, storage, networks, and other OpenStack components.</p>
+</li>
+<li>
+<p><strong>Integration</strong>: Allows users to access multiple OpenStack services through a single interface, simplifying cloud management tasks.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Understanding the roles of these core and ancillary services is essential to grasping how OpenStack functions as a comprehensive IaaS platform. In subsequent sections, we will explore hands-on activities to help you gain practical experience in deploying virtual machines, configuring networks, and managing user accounts using these services.</p>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="overview-of-openstack-architecture.html">Overview of OpenStack architecture</a></span>
+  <span class="next"><a href="relationship-between-openstack-projects-eg-nova-glance-keystone.html">Relationship between OpenStack projects (e.g., Nova, Glance, Keystone)</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <img src="../../../_/img/rhl-logo-red.png" height="40px" alt="Red Hat"  href="https://redhat.com" >
+</footer><script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

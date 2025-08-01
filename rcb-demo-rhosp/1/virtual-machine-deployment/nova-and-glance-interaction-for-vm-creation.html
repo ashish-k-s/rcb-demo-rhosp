@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Nova and Glance interaction for VM creation :: Basics of RHOSP</title>
+    <link rel="prev" href="virtual-machine-deployment.html">
+    <link rel="next" href="flavors-images-and-instance-management.html">
+    <meta name="generator" content="Antora 3.1.3">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.redhat.com" target="_blank"><img src="../../../_/img/redhat-logo.png" height="40px" alt="Red Hat"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="../../..">Basics of RHOSP</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://github.com/RedHatQuickCourses/course-starter-template/issues" target="_blank">Report Issues</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="rcb-demo-rhosp" data-version="1">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Basics of RHOSP</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Home</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../LABENV/index.html">Lab Environment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../overview-of-openstack-architecture/overview-of-openstack-architecture.html">Overview of OpenStack architecture</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../overview-of-openstack-architecture/openstack-services-and-their-functions.html">OpenStack services and their functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../overview-of-openstack-architecture/relationship-between-openstack-projects-eg-nova-glance-keystone.html">Relationship between OpenStack projects (e.g., Nova, Glance, Keystone)</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="virtual-machine-deployment.html">Virtual machine deployment</a>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="nova-and-glance-interaction-for-vm-creation.html">Nova and Glance interaction for VM creation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="flavors-images-and-instance-management.html">Flavors, images, and instance management</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../network-configuration-in-rhosp/network-configuration-in-rhosp.html">Network configuration in RHOSP</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../network-configuration-in-rhosp/neutron-networking-overview.html">Neutron networking overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../network-configuration-in-rhosp/setting-up-networks-subnets-and-routers.html">Setting up networks, subnets, and routers</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../hands-on-labs/hands-on-labs.html">Hands-on Labs</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../hands-on-labs/user-management-exercises-create-users-roles-and-projects.html">User management exercises: create users, roles, and projects</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../hands-on-labs/deploying-virtual-machines-using-nova-and-glance.html">Deploying virtual machines using Nova and Glance</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../hands-on-labs/configuring-networks-and-setting-up-load-balancing-with-haproxy.html">Configuring networks and setting up load balancing with HAProxy</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../appendix/appendix.html">Appendix</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Basics of RHOSP</span>
+    <span class="version">1</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">Basics of RHOSP</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">1</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Basics of RHOSP</a></li>
+    <li><a href="virtual-machine-deployment.html">Virtual machine deployment</a></li>
+    <li><a href="nova-and-glance-interaction-for-vm-creation.html">Nova and Glance interaction for VM creation</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Nova and Glance interaction for VM creation</h1>
+<h1 id="_nova_and_glance_interaction_for_vm_creation" class="sect0"><a class="anchor" href="#_nova_and_glance_interaction_for_vm_creation"></a>Nova and Glance Interaction for VM Creation</h1>
+<div class="paragraph">
+<p>OpenStack Compute (Nova) and OpenStack Image Service (Glance) are two crucial services that work together to create and manage virtual machines (VMs). This section will detail their interaction during the process of deploying a VM.</p>
+</div>
+<div class="sect1">
+<h2 id="_openstack_nova_compute"><a class="anchor" href="#_openstack_nova_compute"></a>OpenStack Nova (Compute)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Nova is responsible for managing and provisioning instances (VMs) through control and compute nodes. It offers an API for users to request resources, such as flavor (hardware specifications), image (OS and additional software), and network details. The control node receives these requests and schedules the instance on a suitable compute node based on resource availability.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_openstack_glance_image_service"><a class="anchor" href="#_openstack_glance_image_service"></a>OpenStack Glance (Image Service)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Glance is an image service that provides a catalogue of virtual machine images, including their disk space and metadata. Users can upload, register, store, retrieve, and delete images using Glance APIs. When creating a VM with Nova, users need to specify the image&#8217;s ID stored in Glance.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_interaction_between_nova_and_glance_during_vm_creation"><a class="anchor" href="#_interaction_between_nova_and_glance_during_vm_creation"></a>Interaction Between Nova and Glance During VM Creation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The process of creating a virtual machine using Nova and Glance can be broken down into several steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Request Creation</strong>: A user submits a request through the Nova API, specifying desired resources like flavor (hardware), image (OS and software), and network details.</p>
+</li>
+<li>
+<p><strong>Image Retrieval</strong>: Nova uses the provided image ID from the user’s request to interact with Glance. Glance retrieves the specified virtual machine image based on its unique identifier.</p>
+</li>
+<li>
+<p><strong>Data Transfer</strong>: Once retrieved, Glance streams the image data directly to the compute node scheduled by Nova for VM creation. This ensures that the image data does not pass through the control node unnecessarily, optimizing resource usage and performance.</p>
+</li>
+<li>
+<p><strong>Instance Creation</strong>: The compute node receives and stores the image data on its local storage. Using this data, it instantiates the virtual machine according to the specified flavor’s hardware resources (CPU, RAM, disk).</p>
+</li>
+<li>
+<p><strong>Booting VM</strong>: Nova configures the network settings using Neutron (OpenStack Networking service) and boots the newly created instance with the desired OS and software from the Glance-provided image.</p>
+</li>
+<li>
+<p><strong>Instance Management</strong>: After creation, users can manage the virtual machine through Nova APIs – starting, stopping, resizing, or deleting instances as needed.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_hands_on_lab_deploying_virtual_machines_using_nova_and_glance"><a class="anchor" href="#_hands_on_lab_deploying_virtual_machines_using_nova_and_glance"></a>Hands-On Lab: Deploying Virtual Machines Using Nova and Glance</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Objective:</strong> Learn to create and manage VMs using OpenStack Nova and Glance by following these hands-on steps.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Access the OpenStack Dashboard (Horizon):</strong> Log in to your OpenStack environment and navigate to the Horizon dashboard.</p>
+</li>
+<li>
+<p><strong>Navigate to Compute &#8594; Instances</strong>: Select 'Instances' from the left-hand menu under Compute.</p>
+</li>
+<li>
+<p><strong>Create a New Instance:</strong> Click on 'Create' at the top of the Instances page.</p>
+</li>
+<li>
+<p><strong>Select Image, Flavor, and Network:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>In the 'Details' tab, provide an appropriate Name and select an Image from the Glance image catalog.</p>
+</li>
+<li>
+<p>Choose a Flavor that fits your desired hardware specifications (CPU, RAM, Disk).</p>
+</li>
+<li>
+<p>Configure the 'Network' settings by selecting an existing network or creating a new one using Neutron.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Launch the Instance:</strong> Review your selections and click 'Launch'. The process will begin with Nova scheduling the VM on a suitable compute node and Glance retrieving the chosen image for deployment.</p>
+</li>
+<li>
+<p><strong>Monitor Instance Creation:</strong> Track the progress in the Instances list – once active, you can connect to your newly created virtual machine using its assigned IP address or SSH key pair.</p>
+</li>
+<li>
+<p><strong>Manage Your Instance:</strong> Use the Horizon dashboard or Nova APIs to stop, start, resize, or delete the instance as required.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>This exercise demonstrates how Nova and Glance collaborate to create a functional VM based on user-specified parameters. Users can adapt this knowledge for real-world scenarios involving virtual machine management in OpenStack environments.</p>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="virtual-machine-deployment.html">Virtual machine deployment</a></span>
+  <span class="next"><a href="flavors-images-and-instance-management.html">Flavors, images, and instance management</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <img src="../../../_/img/rhl-logo-red.png" height="40px" alt="Red Hat"  href="https://redhat.com" >
+</footer><script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
