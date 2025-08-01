@@ -1,0 +1,115 @@
+#  Configuring networks and setting up load balancing with HAProxy
+
+= Configuring networks and setting up load balancing with HAProxy
+
+== Overview
+
+In this section, we will explore how to configure networks within OpenStack and set up load balancing using HAProxy. This hands-on activity is crucial for understanding how to manage resources efficiently and ensure high availability in a RHOSP (Red Hat OpenStack Platform) environment.
+
+== Neutron Networking Overview
+
+OpenStack Networking (Neutron) provides a way to create and manage virtual networks connecting the various components of an OpenStack deployment. It offers several network types, such as Flat (untagged), VLAN (tagged), VXLAN (tunneled), and GRE (generic routing encapsulation).
+
+== Setting up Networks, Subnets, and Routers
+
+To set up a basic network in RHOSP, follow these steps:
+
+1. **Create a Network:**
+
+   Use the following OpenStack command to create a new network named 'my-network' using VLAN technology:
+
+   ```
+   openstack network create --provider-network-type vlan --physical-network 30 my-network
+   ```
+
+2. **Create a Subnet:**
+
+   Create a subnet within the newly created network, specifying its IP range (e.g., 192.168.1.0/24):
+
+   ```
+   openstack subnet create --network my-network --subnet-range 192.168.1.0/24 my-subnet
+   ```
+
+3. **Create a Router:**
+
+   Next, create a router to connect different networks:
+
+   ```
+   openstack router create my-router
+   ```
+
+4. **Add Interfaces to the Router:**
+
+   Attach the created subnet's interface to the router:
+
+   ```
+   openstack router add subnet <router_id> <subnet_id>
+   ```
+
+== Setting up Load Balancing with HAProxy
+
+HAProxy (High Availability Proxy) is a popular open-source load balancer used in conjunction with OpenStack for distributing network or application traffic across multiple servers. To set up HAProxy for load balancing:
+
+1. **Install HAProxy:**
+
+   Install HAProxy on the desired control node using package manager:
+
+   ```
+   sudo yum install haproxy -y
+   ```
+
+2. **Configure HAProxy:**
+
+   Create a configuration file for HAProxy, e.g., `/etc/haproxy.cfg`, with the following basic load-balancing setup:
+
+   ```
+   global
+     log /dev/log local0
+     log /dev/log local1 notice
+     stats uri /stats socket /run/haproxy/admin.sock mode 755 level admin
+
+     defaults
+         log global
+         mode http
+         option httplog
+         option dontlognull
+         timeout connect 5000
+         timeout client 50000
+         timeout server 50000
+
+   frontend http-in
+       bind *:80
+       default_backend servers
+
+   backend servers
+       server web1 192.168.1.10:80 check
+       server web2 192.168.1.11:80 check
+   ```
+
+   This configuration sets up a simple HTTP load balancer that distributes traffic between two web servers (web1 and web2) at IPs 192.168.1.10 and 192.168.1.11 respectively.
+
+3. **Start HAProxy:**
+
+   Start the HAProxy service:
+
+   ```
+   sudo systemctl start haproxy
+   ```
+
+4. **Enable on Boot:**
+
+   Ensure that HAProxy starts automatically at boot time:
+
+   ```
+   sudo systemctl enable haproxy
+   ```
+
+5. **Test Configuration:**
+
+   Test the HAProxy configuration for syntax errors before applying changes to a production environment:
+
+   ```
+   sudo haproxy -c -f /etc/haproxy.cfg
+   ```
+
+By completing these hands-on lab activities, you will gain practical experience in configuring networks within RHOSP and setting up load balancing using HAProxy, enabling you to create high availability and scalable environments.

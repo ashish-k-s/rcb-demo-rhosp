@@ -1,0 +1,4 @@
+* xref:hands-on-labs.adoc[]
+** xref:user-management-exercises-create-users-roles-and-projects.adoc[]
+** xref:deploying-virtual-machines-using-nova-and-glance.adoc[]
+** xref:configuring-networks-and-setting-up-load-balancing-with-haproxy.adoc[]

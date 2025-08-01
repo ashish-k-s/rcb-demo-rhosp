@@ -1,0 +1,3 @@
+#  Virtual machine deployment
+
+Virtual machine deployment in Red Hat OpenStack Platform (RHOSP) involves using the Nova and Glance services. Nova, the compute service, is responsible for provisioning and managing virtual machines (VMs). Glance, the image service, stores and retrieves disk images for VMs. Flavors define VM configurations like CPU, disk space, and memory. Images are templates for creating VMs, available in various formats such as QCOW2 or RAW. Users can manage instances through RHOSP's Horizon dashboard or APIs, selecting from available flavors and images to create and control their VMs.

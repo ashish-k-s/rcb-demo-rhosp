@@ -1,0 +1,66 @@
+#  Setting up networks, subnets, and routers
+
+= Setting up networks, subnets, and routers in Red Hat OpenStack Platform (RHOSP)
+
+## Overview
+
+In Red Hat OpenStack Platform (RHOSP), Neutron is the core component responsible for managing networking services. It enables the creation of various network types, including Flat, VLAN, VXLAN, GRE, and more. This content focuses on setting up networks, subnets, and routers using Neutron in RHOSP.
+
+## Networks
+
+A *network* in Neutron is a logical construct representing a broadcast domain. It can be thought of as a software-defined network (SDN). In RHOSP, you can create different types of networks based on your requirements. Here we will focus on creating a Flat network, which is the simplest type of network.
+
+### Creating a Network
+
+1. Log in to the OpenStack Dashboard (horizon) as an administrator or a user with network-related permissions.
+2. Navigate to **Project > Network > Networks**.
+3. Click **Create Network**.
+4. Provide a name, such as `my_flat_network`, and select `Flat` as the network type.
+5. Optionally, you can also specify a description, external connectivity (if required), and other settings.
+6. Click **Create** to create the Flat network.
+
+## Subnets
+
+A *subnet* is a range of IP addresses assigned to a specific network. To ensure proper communication within your virtual machines (VMs), you need to allocate subnets to networks.
+
+### Creating a Subnet
+
+1. After creating a network (e.g., `my_flat_network`), navigate to **Project > Network > Subnets**.
+2. Click **Create Subnet**.
+3. Provide a name, such as `my_subnet`, and specify the network as `my_flat_network`.
+4. Define the IP range for your subnet (e.g., 192.168.1.0/24).
+5. Optionally, you can also set gateway and DNS information if required.
+6. Click **Create** to create the subnet associated with the network.
+
+## Routers
+
+A *router* in Neutron is responsible for routing traffic between different networks or subnets. This allows communication between VMs in separate networks.
+
+### Creating a Router
+
+1. Navigate to **Project > Network > Routers**.
+2. Click **Create Router**.
+3. Provide a name, such as `my_router`.
+4. Select the external network that connects your environment to the outside world (usually provided by your cloud provider).
+5. Optionally, you can also specify additional router settings, like admin state and ha (high availability).
+6. Click **Create** to create the router.
+
+### Adding Interfaces to Routers
+
+To enable communication between networks or subnets, you need to add interfaces to routers:
+
+1. Select the newly created `my_router`.
+2. Navigate to the **Interfaces** tab.
+3. Click **Add Interface**.
+4. Choose the desired network (e.g., `my_flat_network`) and select an available subnet interface.
+5. Click **Add** to add the interface to the router.
+
+## Load Balancing with HAProxy
+
+To distribute incoming traffic across multiple virtual machines for high availability and performance, you can use a load balancer like HAProxy. While this typically requires additional configuration outside of Neutron, you can set up a load balancer instance in RHOSP using Heat templates or other orchestration tools.
+
+1. Create an HAProxy instance (using Heat templates or other methods).
+2. Configure the load balancer with your virtual machine instances and their respective ports.
+3. Associate the load balancer with the appropriate security groups to allow incoming traffic on desired ports.
+
+This section provided a basic outline for setting up networks, subnets, and routers in Red Hat OpenStack Platform (RHOSP). Remember that further configuration might be necessary depending on your specific use case and infrastructure requirements. Always refer to official Red Hat documentation for detailed instructions and best practices.

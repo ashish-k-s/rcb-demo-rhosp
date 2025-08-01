@@ -1,0 +1,29 @@
+#  Relationship between OpenStack projects (e.g., Nova, Glance, Keystone)
+
+= Relationship Between OpenStack Projects
+
+OpenStack is composed of various interrelated services, or projects, that work together to provide a robust cloud computing platform. The three primary services you'll frequently interact with are Nova, Glance, and Keystone. Here's how they relate to each other:
+
+## Nova (Compute)
+
+Nova is the core service responsible for managing and provisioning virtual machines (VMs). It provides the necessary compute resources to run applications in a cloud environment. Nova communicates with other OpenStack services to allocate, monitor, and terminate instances based on user requests.
+
+## Glance (Image)
+
+Glance stores and retrieves disk images, which are used as templates for creating new VMs. Users can upload custom VM images or use pre-built ones provided by the OpenStack environment. Glance provides a catalog service to store, retrieve, and manage these images, ensuring that Nova has access to the required disk images when launching instances.
+
+## Keystone (Identity)
+
+Keystone is the central authentication and authorization service for OpenStack. It manages user accounts, roles, projects, and APIs endpoints, providing a unified identity service across all OpenStack components. Keystone ensures that only authorized users can create, manage, or access resources in the cloud environment by validating user credentials and permissions against its database.
+
+## Interaction Between Projects
+
+The three services—Nova, Glance, and Keystone—work together to facilitate virtual machine deployment and management:
+
+1. **User Management:** A user requests access to OpenStack resources via Keystone. After successful authentication, the user can create projects and assign roles as needed.
+2. **VM Image Selection:** The user chooses an image stored in Glance for creating a new VM instance through the OpenStack dashboard or command-line interface (CLI).
+3. **Instance Creation:** When the user requests to launch a new virtual machine, Nova interacts with Glance to retrieve the appropriate disk image specified by the user.
+4. **Resource Allocation:** Nova then allocates the necessary resources (CPU, memory, storage) based on the chosen 'flavor' and launches the instance. The flavor defines VM specifications, like the number of CPUs, amount of RAM, and disk size.
+5. **Authorization Check:** Throughout this process, Keystone continuously verifies user permissions to ensure that only authorized users can perform specific actions (e.g., create, delete, or manage instances).
+
+Understanding the relationship between these OpenStack projects—Nova, Glance, and Keystone—is essential for effectively managing and deploying resources in an OpenStack environment. This foundational knowledge will help you to troubleshoot issues and make informed decisions when working with OpenStack services.

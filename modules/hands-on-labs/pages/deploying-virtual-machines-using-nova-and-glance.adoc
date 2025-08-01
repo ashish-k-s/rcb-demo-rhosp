@@ -1,0 +1,68 @@
+#  Deploying virtual machines using Nova and Glance
+
+= Deploying Virtual Machines using Nova and Glance
+
+OpenStack's Nova (Compute) and Glance (Image Service) work together to provide a robust solution for creating, managing, and deleting virtual machines (VMs). This section explains their interaction during the VM deployment process.
+
+## OpenStack Services Involved in VM Deployment
+
+### Nova (Compute)
+Nova is responsible for provisioning and managing virtual servers. It provides an API for users to interact with and control their VMs. Key components of Nova include:
+
+- **nova-api**: Exposes the Compute API for interacting with Nova services.
+- **nova-scheduler**: Decides where to run the VM based on resource availability and other factors.
+- **nova-compute**: Manages VMs on a single host, including starting, stopping, and terminating instances.
+- **nova-conductor**: Handles database transactions for long-running tasks.
+
+### Glance (Image Service)
+Glance stores and retrieves images (virtual machine disk formats) that can be used to launch new servers. Key components of Glance include:
+
+- **glance-api**: Exposes the Image service API for interacting with Glance services.
+- **glance-registry**: Stores and retrieves virtual machine images.
+
+## Interaction Between Nova and Glance During VM Deployment
+
+The process of deploying a virtual machine using Nova and Glance involves several key steps:
+
+1. **Image Selection**: Users choose an image from the Glance registry to use as a base for their new VM. This image contains the operating system, software packages, and configuration files necessary to boot the instance.
+2. **Flavor Selection**: Users select a flavor, which defines the hardware resources (CPU, memory, storage) allocated to the virtual machine. Flavors are predefined resource profiles within Nova.
+3. **Instance Creation**: Using the Compute API, users send a request to Nova specifying the selected image and flavor. The nova-api component forwards this request to the nova-scheduler for placement decision.
+4. **Placement Decision**: Based on available resources and other criteria (e.g., affinity/anti-affinity rules), nova-scheduler selects an appropriate compute host to run the VM.
+5. **VM Provision**: Once a host is chosen, nova-compute performs necessary actions to provision the virtual machine on the selected host using the image specified by the user. This includes allocating disk space for the VM's root and ephemeral partitions from Glance-stored images.
+6. **Instance Startup**: The newly provisioned virtual machine is started, and the chosen image boots up on the designated compute node.
+7. **Monitoring and Management**: Nova continues to monitor the instance, providing management operations like resizing, live migration, and termination as needed through the Compute API.
+
+## Hands-on Lab: Deploying Virtual Machines Using Nova and Glance
+
+### Objective
+In this lab, you will learn how to deploy a virtual machine using OpenStack's Nova and Glance services by selecting an image and a flavor, creating an instance, and verifying its successful deployment.
+
+### Prerequisites
+- Access to an OpenStack environment with Nova and Glance services running.
+- Basic understanding of OpenStack dashboard (Horizon) or command-line interface (CLI: openstack).
+
+### Steps
+
+1. **Access the OpenStack Dashboard**: Log in to your OpenStack environment using Horizon.
+   
+2. **Navigate to Compute > Instances**: Go to the "Instances" section under the Compute menu.
+
+3. **Launch Instance**:
+   - Click on the "Launch Instance" button.
+   - In the "Details" tab, provide a name for your instance (e.g., `my-first-vm`).
+   - In the "Flavor" dropdown, select an appropriate flavor based on your resource requirements (e.g., `m1.small`).
+   - In the "Image Name" field, choose an image from the list provided by Glance. For this lab, you can use a standard Ubuntu image.
+
+4. **Configure Networking**:
+   - Go to the "Networking" tab.
+   - Select a network for your instance from the available networks.
+   - Ensure that at least one subnet is associated with the selected network and assigned to your instance.
+
+5. **Launch the Instance**: Click on the "Launch" button to start provisioning your VM.
+
+6. **Verify Deployment**:
+   - Return to the "Instances" page.
+   - Your new instance should now be listed under active instances.
+   - To access your VM, you can use SSH. Note down the private IP address of your VM from the instance details and use an SSH client to connect (e.g., `ssh cloud_user@<private-ip>`).
+
+Congratulations! You have successfully deployed a virtual machine using OpenStack's Nova and Glance services. Further exploration of additional features like resizing, snapshots, and live migrations can be pursued to deepen your understanding of these services.

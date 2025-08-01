@@ -1,6 +1,6 @@
 site:
-  title: FIXME Course Title
-  start_page: course-starter-template::index.adoc
+  title:  Basics of RHOSP
+  start_page: rcb-demo-rhosp::index.adoc
 
 content:
   sources:

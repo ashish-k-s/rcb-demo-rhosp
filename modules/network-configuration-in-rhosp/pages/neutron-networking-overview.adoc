@@ -1,0 +1,92 @@
+#  Neutron networking overview
+
+= Neutron Networking Overview
+
+Neutron is a core OpenStack service responsible for managing and providing network connectivity as a service (NaaS) between interface attachments on OpenStack entities. It enables users to create, update, and delete network resources such as networks, subnets, routers, ports, security groups, and load balancers. This section provides an overview of Neutron networking, its components, and their functions.
+
+## Components of Neutron Networking
+
+### Networks
+
+A network in Neutron is a logical broadcast domain for the instances attached to it. It represents a Layer 2 broadcast domain, similar to a VLAN or subnet. Users can create different networks based on their application requirements.
+
+### Subnets
+
+A subnet is a range of IP addresses assigned to a specific network. Each instance attached to a particular network must be assigned an IP address from that network's associated subnet. Subnets are typically configured with CIDR notation, specifying the network and host portions of IP addresses.
+
+### Routers
+
+Routers in Neutron manage routing between different networks. They facilitate communication between instances residing on separate networks by learning and maintaining routing tables. Users can add interfaces to routers for external connectivity or internal communication.
+
+### Ports
+
+A port in Neutron represents a network interface attached to an instance. Each port is associated with a specific network, and users can configure various properties like MAC address, security groups, and fixed IP addresses.
+
+### Security Groups
+
+Security groups act as firewalls for instances attached to networks. They control inbound and outbound traffic at the instance level by defining rules allowing or denying traffic based on protocols, ports, and source/destination IP addresses.
+
+### Load Balancers
+
+Load balancers distribute incoming traffic across multiple instances to ensure high availability and efficient resource utilization. OpenStack supports various load balancing solutions, including HAProxy, which can be integrated with Neutron for managing virtual IPs (VIPs) and pool members.
+
+## Interacting with Neutron API
+
+Neutron provides a RESTful API that allows users to interact with network resources programmatically. The API supports various operations like creating, updating, and deleting networks, subnets, routers, ports, security groups, and load balancers. Users can utilize these APIs using OpenStack's command-line client (open) or through programming languages that support RESTful interactions.
+
+## Hands-on Lab: Configuring Networks and Setting Up Load Balancing with HAProxy
+
+### Objective
+
+In this lab, you will learn how to use Neutron to create networks, subnets, routers, and configure load balancing using HAProxy.
+
+### Prerequisites
+
+- Access to an OpenStack environment (preferably RHOSP)
+- Familiarity with the OpenStack command-line client (open)
+
+### Steps
+
+1. **Create a Network and Subnet**
+
+   Use the following open commands to create a network and subnet:
+
+   ```bash
+   open network create --external --provider physical_network=physnet1 my_external_network
+   open subnet create --network my_external_network --subnet-range 192.168.100.0/24 my_external_subnet
+   ```
+
+2. **Create an Internal Network and Subnet**
+
+   Create an internal network and subnet for your instances:
+
+   ```bash
+   open network create internal_network
+   open subnet create --network internal_network --dns-name server1.local domain1
+   ```
+
+3. **Create a Router**
+
+   Connect the external and internal networks using a router:
+
+   ```bash
+   open router create internal_router
+   open router interface add internal_router internal_network
+   open router interface add internal_router external_network
+   ```
+
+4. **Floating IPs for External Access**
+
+   Allocate floating IP addresses for instances to access them from outside the cloud:
+
+   ```bash
+   open floating ip create --port-id <instance_port_id>
+   ```
+
+5. **Deploy an Instance and Configure Load Balancing with HAProxy**
+
+   - Launch an instance and assign it a fixed IP from the internal subnet.
+   - Install HAProxy on the instance and configure it for load balancing.
+   - Configure security groups to allow required traffic (e.g., HTTP/HTTPS).
+
+This hands-on lab provides practical experience in managing network resources using Neutron and setting up load balancing with HAProxy, reinforcing your understanding of OpenStack's networking capabilities.

@@ -1,0 +1,13 @@
+#  Network configuration in RHOSP
+
+= Network Configuration in RHOSP
+
+Network configuration in Red Hat OpenStack Platform (RHOSP) revolves around Neutron, the project responsible for managing networking as a service. Neutron provides an extensible framework allowing the integration of various networking technologies and plugins. It enables the creation and management of networks, subnets, routers, and load balancers.
+
+Key aspects include:
+- **Networks**: Logical constructs representing isolated IP spaces within RHOSP.
+- **Subnets**: Subdivisions of networks with specific IP ranges used for instance communication.
+- **Routers**: Facilitate communication between different subnets and networks, enabling traffic routing.
+- **Load Balancing**: Integrates with HAProxy for distributing incoming traffic across multiple instances, enhancing availability and scalability.
+
+Understanding Neutron's components and configuration is crucial for setting up robust and flexible network environments in RHOSP deployments.

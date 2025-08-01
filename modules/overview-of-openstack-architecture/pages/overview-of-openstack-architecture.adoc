@@ -1,0 +1,11 @@
+#  Overview of OpenStack architecture
+
+- **OpenStack Architecture Overview**
+
+  - OpenStack is an open-source cloud computing platform comprising various services that control hardware resources in data centers.
+  - Key services include:
+    - **Nova**: Responsible for managing and provisioning virtual machines (VMs).
+    - **Glance**: An image service for discovering, registering, and delivering disk images.
+    - **Keystone**: Provides identity service, authentication, and authorization for all OpenStack services.
+  - These services collaborate to offer infrastructure as a service (IaaS) cloud computing functionalities such as virtual machine deployment, managing storage, and configuring networks.
+  - Other projects like Cinder (block storage), Swift (object storage), and Horizon (dashboard) complement this core set of services, forming a comprehensive ecosystem for cloud management.

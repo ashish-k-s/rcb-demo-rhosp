@@ -1,0 +1,83 @@
+#  User management exercises: create users, roles, and projects
+
+== User Management Exercises: Create Users, Roles, and Projects
+
+In Red Hat OpenStack Platform (RHOSP), user management is crucial for maintaining access control and security. This section will guide you through creating users, roles, and projects using the RHOSP command-line interface (CLI).
+
+**Prerequisites:**
+
+1. Access to an RHOSP environment with the appropriate permissions.
+2. Basic understanding of OpenStack terminology:
+   - **User**: An individual with a unique set of credentials for authentication.
+   - **Role**: A predefined set of permissions that determine what actions a user can perform on assigned projects.
+   - **Project**: A namespace for organizing resources and users, typically corresponding to a department, team, or application.
+
+**Creating Users:**
+
+To create a new user in OpenStack, use the `openstack user create` command followed by the desired username. For example:
+
+```bash
+openstack user create --domain default --password <PASSWORD> <USERNAME>
+```
+
+Replace `<PASSWORD>` with a secure password and `<USERNAME>` with your desired username.
+
+**Creating Roles:**
+
+OpenStack comes with predefined roles, such as `admin`, `member`, and `reader`. You can list all available roles using the following command:
+
+```bash
+openstack role list
+```
+
+To assign a specific role to a user, use the `openstack role add` command along with the user's ID or name:
+
+```bash
+openstack role add --user <USER_ID_OR_NAME> <ROLE_NAME>
+```
+
+**Creating Projects:**
+
+Create a new project using the `openstack project create` command. Specify a unique project name and optionally, a description:
+
+```bash
+openstack project create --domain default <PROJECT_NAME>
+```
+
+Replace `<PROJECT_NAME>` with your desired project name.
+
+**Assigning Users to Projects:**
+
+To assign users to projects, use the `openstack user add project` command, followed by the user's ID or name and the project's ID or name:
+
+```bash
+openstack user add project --project <PROJECT_ID_OR_NAME> <USER_ID_OR_NAME>
+```
+
+**Example Workflow:**
+
+1. Create a new user named `myuser`:
+
+   ```bash
+   openstack user create --domain default --password <PASSWORD> myuser
+   ```
+
+2. Assign the role 'admin' to `myuser`:
+
+   ```bash
+   openstack role add --user myuser admin
+   ```
+
+3. Create a project named `mynetwork`:
+
+   ```bash
+   openstack project create --domain default mynetwork
+   ```
+
+4. Assign `myuser` to `mynetwork`:
+
+   ```bash
+   openstack user add project --project mynetwork myuser
+   ```
+
+With this foundation in RHOSP user management, you can now explore more complex scenarios and fine-tune access control for your environment. Remember that security best practices recommend using unique, strong passwords and limiting privileged roles to only those who require them.

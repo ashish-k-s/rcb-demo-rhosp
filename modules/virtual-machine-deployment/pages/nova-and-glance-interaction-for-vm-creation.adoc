@@ -1,0 +1,41 @@
+#  Nova and Glance interaction for VM creation
+
+= Nova and Glance Interaction for VM Creation
+
+OpenStack Compute (Nova) and OpenStack Image Service (Glance) are two crucial services that work together to create and manage virtual machines (VMs). This section will detail their interaction during the process of deploying a VM.
+
+## OpenStack Nova (Compute)
+
+Nova is responsible for managing and provisioning instances (VMs) through control and compute nodes. It offers an API for users to request resources, such as flavor (hardware specifications), image (OS and additional software), and network details. The control node receives these requests and schedules the instance on a suitable compute node based on resource availability.
+
+## OpenStack Glance (Image Service)
+
+Glance is an image service that provides a catalogue of virtual machine images, including their disk space and metadata. Users can upload, register, store, retrieve, and delete images using Glance APIs. When creating a VM with Nova, users need to specify the image's ID stored in Glance.
+
+## Interaction Between Nova and Glance During VM Creation
+
+The process of creating a virtual machine using Nova and Glance can be broken down into several steps:
+
+1. **Request Creation**: A user submits a request through the Nova API, specifying desired resources like flavor (hardware), image (OS and software), and network details.
+2. **Image Retrieval**: Nova uses the provided image ID from the user’s request to interact with Glance. Glance retrieves the specified virtual machine image based on its unique identifier.
+3. **Data Transfer**: Once retrieved, Glance streams the image data directly to the compute node scheduled by Nova for VM creation. This ensures that the image data does not pass through the control node unnecessarily, optimizing resource usage and performance.
+4. **Instance Creation**: The compute node receives and stores the image data on its local storage. Using this data, it instantiates the virtual machine according to the specified flavor’s hardware resources (CPU, RAM, disk).
+5. **Booting VM**: Nova configures the network settings using Neutron (OpenStack Networking service) and boots the newly created instance with the desired OS and software from the Glance-provided image.
+6. **Instance Management**: After creation, users can manage the virtual machine through Nova APIs – starting, stopping, resizing, or deleting instances as needed.
+
+## Hands-On Lab: Deploying Virtual Machines Using Nova and Glance
+
+**Objective:** Learn to create and manage VMs using OpenStack Nova and Glance by following these hands-on steps.
+
+1. **Access the OpenStack Dashboard (Horizon):** Log in to your OpenStack environment and navigate to the Horizon dashboard.
+2. **Navigate to Compute -> Instances**: Select 'Instances' from the left-hand menu under Compute.
+3. **Create a New Instance:** Click on 'Create' at the top of the Instances page.
+4. **Select Image, Flavor, and Network:**
+   - In the 'Details' tab, provide an appropriate Name and select an Image from the Glance image catalog.
+   - Choose a Flavor that fits your desired hardware specifications (CPU, RAM, Disk).
+   - Configure the 'Network' settings by selecting an existing network or creating a new one using Neutron.
+5. **Launch the Instance:** Review your selections and click 'Launch'. The process will begin with Nova scheduling the VM on a suitable compute node and Glance retrieving the chosen image for deployment.
+6. **Monitor Instance Creation:** Track the progress in the Instances list – once active, you can connect to your newly created virtual machine using its assigned IP address or SSH key pair.
+7. **Manage Your Instance:** Use the Horizon dashboard or Nova APIs to stop, start, resize, or delete the instance as required. 
+
+This exercise demonstrates how Nova and Glance collaborate to create a functional VM based on user-specified parameters. Users can adapt this knowledge for real-world scenarios involving virtual machine management in OpenStack environments.

@@ -1,0 +1,57 @@
+#  OpenStack services and their functions
+
+= Basics of RHOSP
+
+== Overview of OpenStack architecture
+
+OpenStack, a widely-used open-source cloud computing platform, comprises several interconnected services that work together to deliver infrastructure as a service (IaaS). These services can be broadly categorized into core services and ancillary services. Each service plays a critical role in providing comprehensive cloud functionalities, such as compute, storage, networking, and image services.
+
+Here's an overview of the essential OpenStack services and their functions:
+
+## Core Services
+
+### 1. Nova (Compute)
+Nova is responsible for managing and provisioning virtual machines (VMs) and bare metal servers within the cloud infrastructure. It enables users to create, update, and delete instances based on their requirements. Key aspects of Nova include:
+
+- **Instance Management**: Nova handles instance lifecycle operations like launching, resizing, and terminating instances using flavors (predefined VM sizes).
+- **API Access**: Provides a RESTful API for users to interact with the service, enabling automation and integration with other OpenStack components or third-party tools.
+
+### 2. Glance (Image)
+Glance serves as the image service in OpenStack, managing disk images that are used to create and snapshot VMs. It handles various image formats and provides a centralized repository for storing VM images:
+
+- **Image Storage**: Stores VM disk images, which can be either raw or pre-formatted filesystems. Users upload images to Glance, making them available for consumption by Nova for instance creation.
+- **Image Metadata**: Allows users to provide metadata associated with images, such as image name, disk format, container format, and kernel/ramdisk options.
+
+### 3. Keystone (Identity)
+Keystone is the authentication and authorization service in OpenStack, responsible for managing user accounts, roles, services, endpoints, and tokens:
+
+- **Authentication**: Verifies users' credentials against a backend database (e.g., LDAP, SQL) or uses token-based mechanisms like OAuth or SAML.
+- **Authorization**: Defines access policies by mapping users to roles and roles to permissions for various OpenStack services and API endpoints.
+
+## Ancillary Services
+
+### 1. Cinder (Block Storage)
+Cinder provides persistent block storage to virtual machines through iSCSI and other protocols:
+
+- **Volume Management**: Allows the creation, deletion, attachment, and detachment of volumes to instances for additional data storage.
+- **Backups**: Supports volume snapshots and backups, enabling point-in-time recovery of data.
+
+### 2. Swift (Object Storage)
+Swift is OpenStack's object storage service, offering highly durable and scalable storage for unstructured data:
+
+- **Storage Pools**: Uses clusters of commodity servers to store vast amounts of data as objects, ensuring redundancy through replication across different availability zones.
+- **Access Control**: Manages user accounts with access control lists (ACLs) for controlling who can read and write objects in Swift containers.
+
+### 3. Neutron (Networking)
+Neutron is the networking service responsible for managing the network connectivity of VMs:
+
+- **Network Creation**: Enables the creation of virtual networks, subnets, routers, load balancers, and firewalls to support various networking models (e.g., flat, VLAN, GRE, VXLAN).
+- **Connectivity**: Facilitates communication between VMs, external networks, and the internet by configuring security groups, port forwarding rules, and other networking features.
+
+### 4. Horizon (Dashboard)
+Horizon is OpenStack's web-based user interface that provides a graphical way to interact with OpenStack services:
+
+- **User Interface**: Offers an intuitive dashboard for managing resources, creating and configuring VMs, storage, networks, and other OpenStack components.
+- **Integration**: Allows users to access multiple OpenStack services through a single interface, simplifying cloud management tasks.
+
+Understanding the roles of these core and ancillary services is essential to grasping how OpenStack functions as a comprehensive IaaS platform. In subsequent sections, we will explore hands-on activities to help you gain practical experience in deploying virtual machines, configuring networks, and managing user accounts using these services.

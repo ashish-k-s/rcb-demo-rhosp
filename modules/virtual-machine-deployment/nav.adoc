@@ -1,0 +1,3 @@
+* xref:virtual-machine-deployment.adoc[]
+** xref:nova-and-glance-interaction-for-vm-creation.adoc[]
+** xref:flavors-images-and-instance-management.adoc[]

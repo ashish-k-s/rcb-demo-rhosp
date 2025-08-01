@@ -1,22 +1,27 @@
-= An Example Quick Course
+=  Basics of RHOSP
 :navtitle: Home
 
 == Introduction
 
-Course Title: Course title FIXME
+Course Title:  Basics of RHOSP
 
 Description:
 Course description FIXME
 
 Duration: FIXME hours
 
-== Objectives
+== Topics covered in this course
 
-On completing this course, you should be able to:
 
-* Observable, measurable objective...
-* Observable, measurable objective...
-* Observable, measurable objective...
+*  Overview of OpenStack architecture
+
+*  Virtual machine deployment
+
+*  Network configuration in RHOSP
+
+*  Hands-on Labs
+
+
 
 == Prerequisites
 

@@ -1,0 +1,3 @@
+* xref:overview-of-openstack-architecture.adoc[]
+** xref:openstack-services-and-their-functions.adoc[]
+** xref:relationship-between-openstack-projects-eg-nova-glance-keystone.adoc[]

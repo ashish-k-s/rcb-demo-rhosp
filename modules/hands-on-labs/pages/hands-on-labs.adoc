@@ -1,0 +1,9 @@
+#  Hands-on Labs
+
+= Hands-on Labs
+
+The hands-on labs provide practical experience with Red Hat OpenStack Platform (RHOSP). These exercises are designed to reinforce theoretical understanding and enable users to perform real-world tasks. Key activities include:
+
+- User management exercises, where learners create users, roles, and projects, gaining hands-on experience with Keystone, the OpenStack identity service.
+- Deploying virtual machines using Nova (compute) and Glance (image), illustrating the interaction between these services for effective VM creation.
+- Configuring networks and setting up load balancing with HAProxy, offering insights into Neutron networking and related RHOSP components.

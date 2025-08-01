@@ -1,0 +1,93 @@
+#  Flavors, images, and instance management
+
+= Flavors, Images, and Instance Management in RHOSP
+
+Flavors, images, and instances are fundamental concepts in managing virtual machines (VMs) within the OpenStack environment, specifically using the Nova service for compute and Glance for images. This section delves into these components, their relationships, and practical management techniques.
+
+## Flavors
+
+In RHOSP, a *flavor* is a resource profile that defines the hardware specifications (CPU, memory, storage) available to a virtual machine instance. It acts as a template for creating VMs with varying requirements.
+
+### Key aspects of flavors:
+
+1. **Name**: A unique identifier for the flavor.
+2. **RAM**: The amount of RAM allocated to instances using this flavor.
+3. **vCPU**: The number of virtual CPUs (or cores) assigned to instances.
+4. **Disk**: Specifies the root disk size and type. Additional ephemeral or swap disks can also be configured.
+5. **Exchange Servers**: Exchange roles such as Mailbox, Client Access, and Edge Transport can be enabled or disabled in flavors for tailored server configurations.
+
+### Example: Creating a flavor
+
+```asciidoc
+[SOURCE_CODE]
+# Create a new flavor named 'medium' with 2vCPUs, 4GB RAM, and a 30GB root disk
+openstack flavor create --ephemeral-encryption --property OS_EPHEMERAL_ENCRYPTION_KEY_MANAGEMENT=auto \
+  --public \
+  --property enable_mailbox='True' \
+  --property enable_client_access='True' \
+  --property enable_edge_transport='False' \
+  --property hw:cpu_policy=shared \
+  medium 2 4 30
+```
+
+## Images
+
+Images in RHOSP represent virtual machine disk formats that can be used to launch new instances. Glance stores these images and makes them available for use by Nova.
+
+### Types of images
+
+1. **Raw**: A direct copy of a partition or disk sector image.
+2. **qcow2**: Uses the QEMU Emulated Disk Format, offering features like snapshots, encryption, and compression.
+3. **VHD**: Microsoft's Virtual Hard Disk format, suitable for Windows-based images.
+4. **VMDK**: VMware's Virtual Machine Disk format, compatible with VMware environments.
+5. **ISO**: CD-ROM or DVD images used for booting instances from installation media.
+
+### Example: Listing available Glance images
+
+```asciidoc
+# List all available Glance images
+openstack image list --long
+```
+
+## Instance Management
+
+Instances refer to the running virtual machines within RHOSP, created using flavors and images specified by users. Managing instances involves monitoring, resizing, and deletion as needed.
+
+### Key instance management operations:
+
+1. **Create an instance**: Uses a flavor and image to launch a new VM.
+   ```asciidoc
+   # Create an instance named 'my_instance' using the 'medium' flavor and 'ubuntu-latest' image
+   openstack server create --flavor medium --image ubuntu-latest --nic net-id=<network_id> my_instance
+   ```
+
+2. **List instances**: View all active instances or filter by name, status, etc.
+   ```asciidoc
+   # List all instances
+   openstack server list
+
+   # Filter for an instance named 'my_instance'
+   openstack server list --name my_instance
+   ```
+
+3. **Resize an instance**: Change the flavor of an existing instance to adjust its resources.
+   ```asciidoc
+   # Resize 'my_instance' to use the 'large' flavor
+   openstack server resize my_instance large
+   ```
+
+4. **Delete an instance**: Terminate and remove an instance from the system.
+   ```asciidoc
+   # Delete 'my_instance'
+   openstack server delete my_instance
+   ```
+
+### Hands-on Lab: Instance Management
+
+1. **Create flavors**: Design flavors for different workloads (e.g., small, medium, large).
+2. **Upload images**: Store OS and application images in Glance.
+3. **Launch instances**: Use created flavors and uploaded images to start VMs.
+4. **Resize instances**: Adjust resources for running instances based on demands.
+5. **Delete instances**: Terminate instances when no longer needed, ensuring resource cleanup.
+
+This comprehensive coverage of flavors, images, and instance management equips users with the skills necessary to effectively administer virtual machines in a Red Hat OpenStack Platform (RHOSP) environment.

@@ -1,10 +1,16 @@
-name: course-starter-template
-title: FIXME Course Title
+name: rcb-demo-rhosp
+title:  Basics of RHOSP
 version: 1
 nav:
 - modules/ROOT/nav.adoc
 - modules/LABENV/nav.adoc
-- modules/chapter1/nav.adoc
-- modules/chapter2/nav.adoc
-- modules/chapter3/nav.adoc
+
+- modules/overview-of-openstack-architecture/nav.adoc
+
+- modules/virtual-machine-deployment/nav.adoc
+
+- modules/network-configuration-in-rhosp/nav.adoc
+
+- modules/hands-on-labs/nav.adoc
+
 - modules/appendix/nav.adoc
